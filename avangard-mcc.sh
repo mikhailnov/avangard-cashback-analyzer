@@ -90,11 +90,11 @@ do
 		ops_total_not_cashedback=$((ops_total_not_cashedback+1))
 	fi
 	sum_total=$((sum_total+sum))
-	ops_total=$((ops_total+sum))
+	ops_total=$((ops_total+1))
 done < <(iconv -f cp1251 "$file" | sed -e 's,",,g')
 
 echo "Всего: $sum_total руб, $ops_total операций"
 echo "Попадает под кешбек: $sum_total_cashedback руб, $ops_total_cashedback операций"
-echo "Не попадает под кешбек: $sum_total_not_cashedback руб, $sum_total_not_cashedback операций"
+echo "Не попадает под кешбек: $sum_total_not_cashedback руб, $ops_total_not_cashedback операций"
 echo "Доля попавших под кешбек средств: $(echo "${sum_total_cashedback}/${sum_total}*100" | bc -lq)%"
 echo "Доля попавших под кешбек операций: $(echo "${ops_total_cashedback}/${ops_total}*100" | bc -lq)%"
